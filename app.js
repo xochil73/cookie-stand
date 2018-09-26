@@ -1,17 +1,39 @@
 "use strict";
 var pike = {
+    name: "1st and Pike",
     minCustomer: 23,
     maxCustomer: 65,
     avgCookie: 6.3,
     cookiesPerHour: [],
-    avgCustomers: function () {
-    for (var i = 0; i < 15; i++) {
-    var minCustomer = Math.ceil(this.minCustomer);
-    var maxCustomer = Math.floor(this.maxCustomer);
-    var customers: Math.floor(Math.random() * (maxCustomer - minCustomer + 1)) + minCustomer; 
-    return customers
+    cookieSales: function () {
+      for (var i = 0; i < 15; i++) {
+        // customer and cookie math
+        var randomCustThisHour = Math.floor(Math.random() * (this.maxCustomer - this.minCustomer + 1)) + this.minCustomer;
+        var cookieSalesThisHour = Math.ceil(this.avgCookie * randomCustThisHour);
+        //this.cookiesPerHour.(cookieSalesThisHour); (didn't need this line - pushing from elsewhere)
+        //console.log("customers" + randomCustThisHour + "hourly cookie sales" + cookieSalesThisHour);
+
+        // store hours math
+        var storeHour = i + 6; 
+        if (storeHour < 12){
+          storeHour += 'am: '
+        } else if(storeHour > 12) {
+          storeHour -= 12;
+          storeHour += "pm: ";
+        } else {
+          storeHour += "pm: ";
+        }
+        
+        //combining customer & cookie with store hours math
+        var cookieSentence = storeHour + cookieSalesThisHour + " cookies";
+        //console.log(cookieSentence);
+        this.cookiesPerHour.push(cookieSentence);
+          
+
+        
       }
-      }
+    
+    }     
       
 } 
 
@@ -75,6 +97,3 @@ var pike = {
 //       }
       
 // }
-var today = new Date();[
-  
-]

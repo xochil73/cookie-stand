@@ -6,9 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sales</title>
 </head>
-<body>
+<body id="body">
     <div id="sales"></div>
-    <table id = "cookieTable"></table>
+    <!-- <table id = "cookieTable"></table> -->
+    <div id = "cookieTable"></div>
+    <form id= "store-generator-form">
+            
+        
+        
+        <fieldset>
+            <legend>Store Generator</legend>
+            
+            <label for="name">Name</label>
+            <input name="name" type="text"/>
+
+            <label for="minimum-customer">Minimum Customer</label>
+            <input name="minimum-customer" type="text"/>
+
+            <label for="maximum-customer">Maximum Customer</label>
+            <input name="maximum-customer" type="text"/>
+
+            <label for="average-cookie">Average Cookie Sales</label>
+            <input name="average-cookie" type="text"/>
+
+            <button type="submit">Add New Store</button>
+
+        </fieldset>
+    </form>
+        
     
     <script src="app.js"></script>
 </body>

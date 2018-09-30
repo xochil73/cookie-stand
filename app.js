@@ -1,7 +1,7 @@
 "use strict";
 //Constructor for all stores
 //global array
-var openHours = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm'];
+var openHours = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm', 'Total'];
 
 var StoreConstructor = function (name, minCustomer, maxCustomer, avgCookie){
   this.name = name;
@@ -69,7 +69,8 @@ StoreConstructor.prototype.cookieSales = function(){
   // target.appendChild(ulEl);
 };     
 //gloabl var for accesing the cookieTable ID
-var cookieTable = document.getElementById('cookieTable');
+var cookieTableDiv = document.getElementById('cookieTable');
+var cookieTable = document.createElement('table');
 //table header 
  var makeTableHeader = function(){
   
@@ -105,7 +106,7 @@ var makeTableData = function(){
     cookieTable.appendChild(storeRowEl);
   }
 
-
+  cookieTableDiv.appendChild(cookieTable);
 
 }
 
@@ -119,6 +120,36 @@ makeTableHeader();
 makeTableData();
 
 
+//form
+
+var handleMakeStore = function (event){
+  event.preventDefault()
+  var storeName = event.target.name.value;
+  var minCust = parseInt(event.target["minimum-customer"].value);
+  var maxCust = parseInt(event.target["maximum-customer"].value);
+  var avgCookie = parseFloat(event.target["average-cookie"].value);
+  console.log(storeName, typeof minCust, typeof maxCust, typeof avgCookie);
+
+
+  // console.log(typeof parseInt(minCust));
+
+  var newStore = new StoreConstructor (storeName, minCust, maxCust, avgCookie);
+  newStore.cookieSales();
+  console.log (newStore);
+  allStores.push(newStore);
+
+
+  cookieTable.remove();
+  cookieTable=document.createElement("table");
+  makeTableHeader();
+  makeTableData();
+
+
+}
+
+
+var form = document.getElementById("store-generator-form");
+form.addEventListener("submit", handleMakeStore);
 
 
 

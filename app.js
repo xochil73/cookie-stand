@@ -110,6 +110,17 @@ var makeTableData = function(){
 
 }
 
+// var makeTableFooter = function(){
+//  var makeFooterRowEl = document.createElement('tr');
+//  var totalEl = document.createElement('th');
+//  totalEl.textContent = 'Totals';
+//  makeFooterRowEl.appendChild(totalEl);
+//  for (var i = 0; i < openHours.length; i++){
+  //  var 
+//  }
+// }
+
+
 //calling the functions
 pike.cookieSales();
 seaTac.cookieSales();

@@ -1,8 +1,9 @@
 "use strict";
-//Constructor for all stores
-//global array
+
+//global array for openHours
 var openHours = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm', 'Total'];
 
+//create Store Constructor
 var StoreConstructor = function (name, minCustomer, maxCustomer, avgCookie){
   this.name = name;
   this.minCustomer = minCustomer;
@@ -14,16 +15,17 @@ var StoreConstructor = function (name, minCustomer, maxCustomer, avgCookie){
 
 
 
-// creating stores
+// creating stores as variables
 var pike = new StoreConstructor ('1st & Pike', 23, 65, 6.3);
 var seaTac = new StoreConstructor ('SeaTac', 3, 24, 1.2);
 var seaCenter = new StoreConstructor ('Seattle Center', 11, 38, 3.7);
 var capHill= new StoreConstructor ('Capitol Hill', 20, 38, 2.3);
 var alki= new StoreConstructor ('Alki', 2, 16, 4.6 );
 
+//creating a global variable to call ALL stores
 var allStores = [pike, seaTac, seaCenter, capHill, alki];
 
-//prototype 
+//prototype  // too confining // need to make arrays
 StoreConstructor.prototype.cookieSales = function(){
   var cookieTotal = 0;
       
@@ -34,7 +36,7 @@ StoreConstructor.prototype.cookieSales = function(){
     cookieTotal += cookieSalesThisHour;
     //this.cookiesPerHour.(cookieSalesThisHour); (didn't need this line - pushing from elsewhere)
     //console.log("customers" + randomCustThisHour + "hourly cookie sales" + cookieSalesThisHour);
-
+    
     // store hours math
     var storeHour = i + 6; 
     if (storeHour < 12){
@@ -95,7 +97,6 @@ var makeTableData = function(){
     storeRowEl.appendChild(locationEl);
     
     for (var j = 0; j < 16; j++) {
-      // var storeHourlySalesEl = document.createElement('tr');
       var hourlySalesEl = document.createElement('td');
       hourlySalesEl.textContent = allStores[i].cookiesPerHour[j];
       storeRowEl.appendChild(hourlySalesEl);
@@ -110,25 +111,56 @@ var makeTableData = function(){
 
 }
 
-// var makeTableFooter = function(){
-//  var makeFooterRowEl = document.createElement('tr');
-//  var totalEl = document.createElement('th');
-//  totalEl.textContent = 'Totals';
-//  makeFooterRowEl.appendChild(totalEl);
-//  for (var i = 0; i < openHours.length; i++){
-  //  var 
-//  }
-// }
+var makeTableFooter = function() {
+  
+  var tfEl = document.createElement('tfoot');//create table footer
+  var thEl = document.createElement('th');//create header for totals
+  thEl.textContent = 'Totals';//the footer text 
+  tfEl.appendChild(thEl);//appending the footer to the row
+}
 
 
-//calling the functions
 pike.cookieSales();
 seaTac.cookieSales();
 seaCenter.cookieSales();
 capHill.cookieSales();
 alki.cookieSales();
+
+
+var totalSalesFooter = function () {
+  console.log('all stores', allstores)
+    for (var i = 0; i < openHours.length; i++){
+      var finalCookieTotal = 0;
+      console.log('hours', openHours[i]);
+
+      for (var j = 0; j < allStores.length ; j++){
+      console.log('sales')
+      finalCookieTotal =  allStores[i].cookiesPerhour[j] + finalCookieTotal
+      }
+    //  var thEl = document.createElement('th');
+    //  thEl.textContent = finalCookieTotal;
+    //  tfEl.appendChild(thEl);
+    //  cookieTable.appendChild(thEl);
+    
+    
+    // var hours = document.createElement('td')
+    // hourlySalesEl.textContent = allStores[i].cookiesPerHour[i]
+  }
+  // cookieTableDiv.appendChild(cookieTable);
+}
+ 
+
+
+//calling the functions
+// pike.cookieSales();
+// seaTac.cookieSales();
+// seaCenter.cookieSales();
+// capHill.cookieSales();
+// alki.cookieSales();
 makeTableHeader();
 makeTableData();
+//makeTableFooter();
+//totalSalesFooter();
 
 
 //form

@@ -2,7 +2,7 @@
 //Constructor for all stores
 //global array
 var openHours = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm', 'Total'];
-
+var totalCookiesAllStores = [];
 var StoreConstructor = function (name, minCustomer, maxCustomer, avgCookie){
   this.name = name;
   this.minCustomer = minCustomer;
@@ -109,16 +109,38 @@ var makeTableData = function(){
   cookieTableDiv.appendChild(cookieTable);
 
 }
+var buildsCookiesAllStores = function (){
+  var totalCookiesForTotalCookieAllStores = 0;
+  for (var i = 0; i < openHours.length; i++){
+    for(var j = 0; j < allStores.length; j++){
+      totalCookiesForTotalCookieAllStores = allStores[j].cookiesPerHour[i] + totalCookiesForTotalCookieAllStores;
+    }
+    totalCookiesAllStores.push(totalCookiesForTotalCookieAllStores);
+    totalCookiesForTotalCookieAllStores = 0;
+  }
 
-// var makeTableFooter = function(){
-//  var makeFooterRowEl = document.createElement('tr');
-//  var totalEl = document.createElement('th');
-//  totalEl.textContent = 'Totals';
-//  makeFooterRowEl.appendChild(totalEl);
-//  for (var i = 0; i < openHours.length; i++){
-  //  var 
-//  }
-// }
+
+}
+
+
+ var makeTableFooter = function(){
+ var makeFooterRowEl = document.createElement('tr');
+ var totalEl = document.createElement('th');
+ totalEl.textContent = 'Totals';
+ makeFooterRowEl.appendChild(totalEl);
+ console.log('outisde the for loop');
+ for (var j = 0; j < 16; j++) {
+  // var storeHourlySalesEl = document.createElement('tr');
+  var totalCookieSalesEl = document.createElement('td');
+  totalCookieSalesEl.textContent = totalCookiesAllStores[j];
+  makeFooterRowEl.appendChild(totalCookieSalesEl);
+  console.log('inside for loop');
+  // makeTableHeader.appendChild(storeLocationEl);
+  // makeTableHeader.appendChild(storetotalCookieSalesEl);
+}
+cookieTable.appendChild(makeFooterRowEl);
+
+}
 
 
 //calling the functions
@@ -129,6 +151,10 @@ capHill.cookieSales();
 alki.cookieSales();
 makeTableHeader();
 makeTableData();
+buildsCookiesAllStores(); 
+console.log(totalCookiesAllStores);
+makeTableFooter();
+
 
 
 //form
@@ -154,6 +180,8 @@ var handleMakeStore = function (event){
   cookieTable=document.createElement("table");
   makeTableHeader();
   makeTableData();
+  buildsCookiesAllStores();
+  makeTableFooter();
 
 
 }

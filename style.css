@@ -1,14 +1,15 @@
 h1 {
-    color: rgb(17, 19, 18);
+    color: rgb(15, 15, 15);
     text-align: center;
-    background-color: aquamarine
+    font-family: 'Fira Sans', sans-serif;
+    background-color: rgb(221, 70, 171)
     
     
 }
 
 p {
     text-align: center;
-    background-color: rgb(203, 236, 12)
+    background-color: rgba(158, 236, 12, 0.829)
 }
 
 
